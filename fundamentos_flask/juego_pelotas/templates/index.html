@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Pelotas</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <h1>Juego de Pelotas</h1>
+    <main>
+        <!-- Se crea un ciclo for para crear las pelotas -->
+        {% for pelota in range(pelotas) %} 
+        <!-- Se crea un div con la clase pelota y se le asigna un color de fondo -->
+            <div class="pelota" style="background-color: {{ color_pelota }};"> {{pelota+1}}</div>
+        <!-- Se cierra el ciclo for -->
+        {% endfor %}
+    </main>
+</body>
+
+</html>

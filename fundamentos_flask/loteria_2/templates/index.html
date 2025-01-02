@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loteria 2</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Bienvenido a Loteria Mexicana 2</h1>
+
+    <p>Elegiremos una carta aleatoria y tu debes adivinar</p>
+
+        <form action="/adivina" method="post">
+            <input type="text" name="numero" id="num">
+            <input type="submit" value="Adivinar">
+        </form>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+</body>
+</html>

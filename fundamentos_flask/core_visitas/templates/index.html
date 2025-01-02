@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitas</title>
+</head>
+<body>
+    <h1>Visitas</h1>
+    <p>Esta página ha sido visitada {{visitas}} veces.</p>
+
+    <form action="/aumentar_dos" method="post">
+        <button type="submit">Aumentar +2</button>
+    </form>
+    
+    <form action="/destruir_sesion" method="post">
+        <button type="submit">Resetear visitas</button>
+    </form>
+</body>
+</html>

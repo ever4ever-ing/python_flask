@@ -1,0 +1,86 @@
+<!-- templates/loteria.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lotería Mexicana</title>
+    <style>
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid black;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .cell {
+            flex: 1;
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            min-height: 100px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .cell:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .card-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .card-name {
+            font-size: 0.9em;
+        }
+
+        h1 {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .url-info {
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        @media (max-width: 600px) {
+            .card-number {
+                font-size: 1em;
+            }
+            .card-name {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Lotería Mexicana</h1>
+
+    <div class="container">
+        {% for row in grid %}
+        <div class="row">
+            {% for cell in row %}
+            <div class="cell" style="background-color: {{ cell.color }}">
+                <div class="card-number">{{ cell.number }}</div>
+                <div class="card-name">{{ cell.name }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

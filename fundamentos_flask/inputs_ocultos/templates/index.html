@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inputs Ocultos</title>
+</head>
+
+<body>
+    <h1>Inputs Ocultos</h1>
+    <form action="/iniciar_sesion" method="POST">
+
+        <label>E-mail:</label>
+
+        <input type="text" name="email">
+
+        <label>Password:</label>
+
+        <input type="text" name="password">
+
+        <input type="hidden" name="tipo_usuario" value="administrador">
+
+        <input type="submit" value="Iniciar Sesión">
+
+    </form>
+
+    <form action="/iniciar_sesion" method="POST">
+
+        <label>E-mail:</label>
+
+        <input type="text" name="email">
+
+        <label>Password:</label>
+
+        <input type="text" name="password">
+
+        <input type="hidden" name="tipo_usuario" value="usuario">
+
+        <input type="submit" value="Iniciar Sesión">
+
+    </form>
+</body>
+
+</html>
