@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GitHub User Search</title>
+    <style>
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .user-card { border: 1px solid #ddd; padding: 20px; margin: 20px 0; }
+        .avatar { width: 100px; border-radius: 50%; }
+        .error { color: red; padding: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Buscador de usuarios de GitHub</h1>
+        <form id="searchForm" onsubmit="searchUser(event)">
+            <input type="text" id="username" required placeholder="Nombre de usuario">
+            <button type="submit">Buscar</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        async function searchUser(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const resultDiv = document.getElementById('result');
+            
+            resultDiv.innerHTML = 'Buscando...';
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/github/user/${username}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="user-card">
+                            <img src="${data.data.avatar_url}" class="avatar">
+                            <h2>${data.data.name || data.data.username}</h2>
+                            <p>${data.data.bio || 'No bio available'}</p>
+                            <p>Followers: ${data.data.followers}</p>
+                            <p>Public repos: ${data.data.public_repos}</p>
+                            <button onclick="loadRepos('${data.data.username}')">
+                                Ver repositorios
+                            </button>
+                        </div>
+                        <div id="repos"></div>
+                    `;
+                } else {
+                    resultDiv.innerHTML = `<div class="error">${data.error}</div>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            }
+        }
+
+        async function loadRepos(username) {
+            const reposDiv = document.getElementById('repos');
+            reposDiv.innerHTML = 'Cargando repositorios...';
+            
+            try {
+                const response = await fetch(`http://localhost:5000/api/github/repos/${username}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    reposDiv.innerHTML = `
+                        <h3>Repositorios</h3>
+                        ${data.data.map(repo => `
+                            <div style="border: 1px solid #eee; margin: 10px 0; padding: 10px;">
+                                <h4>${repo.name}</h4>
+                                <p>${repo.description || 'No description'}</p>
+                                <p>Language: ${repo.language || 'N/A'} | ⭐ ${repo.stars}</p>
+                                <a href="${repo.url}" target="_blank">Ver en GitHub</a>
+                            </div>
+                        `).join('')}
+                    `;
+                } else {
+                    reposDiv.innerHTML = `<div class="error">${data.error}</div>`;
+                }
+            } catch (error) {
+                reposDiv.innerHTML = `<div class="error">Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

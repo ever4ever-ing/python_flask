@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Formulario de Taco</title>
+</head>
+<body>
+    <form action="/actualizar/{{taco['id']}}" method="post" class="p-3 col-4 mx-auto my-5 border">
+        <h2 class="text-center text-primary">Editar taco {{taco['id']}}:</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                <strong>Mensajes FLASH AHHHHHHH!!!!</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div class="form-group">
+            <label for="name">Tortilla:</label>
+            <input type="text" name="tortilla" id="tortilla" class="form-control" value="{{taco['tortilla']}}">
+        </div>
+        <div class="form-group">
+            <label for="guiso">Guiso:</label>
+            <input type="text" name="guiso" id="guiso" class="form-control" value="{{taco['guiso']}}">
+        </div>
+        <div class="form-group">
+            <label for="salsa">Salsa:</label>
+            <input type="text" name="salsa" id="salsa" class="form-control" value="{{taco['salsa']}}">
+        </div>
+        <div class="form-group">
+            <label for="complemento_1">Complemento Uno:</label>
+            <input type="text" name="complemento_1" id="complemento_1" class="form-control" value="{{taco['complemento_1']}}">
+        </div>
+        <div class="form-group">
+            <label for="complemento_2">Complemento Dos:</label>
+            <input type="text" name="complemento_2" id="complemento_2" class="form-control" value="{{taco['complemento_2']}}">
+        </div>
+        <input type="submit" value="Actualizar Taco" class="btn btn-primary btn-outline-dark">
+    </form>
+</body>
+</html>

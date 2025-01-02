@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/add_favorite" method="POST">
+        <label for="user">Agregar como favorita para el usuario:</label>
+        <select name="user_id" id="user">
+            {% for user in todos_usuarios %}
+                <option value="{{ user.id }}">{{ user.nombre }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="cancion_id" value="{{ cancion.id }}">
+        <button type="submit">Agregar</button>
+    </form>
+</body>
+</html>

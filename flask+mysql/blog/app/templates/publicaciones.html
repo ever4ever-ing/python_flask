@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Publicaciones</title>
+</head>
+<body>
+    <h2>Publicaciones</h2>
+    <form action="/publicar" method="POST">
+        <textarea name="contenido" placeholder="Escribe algo..."></textarea>
+        <button type="submit">Publicar</button>
+    </form>
+    <hr>
+    {% for pub in publicaciones %}
+        <div>
+            <h3>Publicado por: {{ pub.nombre }}, hace {{ pub.created_at }}</h3>
+            <p>{{ pub.contenido }}</p>
+            <h4>Comentarios:</h4>
+            <ul>
+                {% for comentario in pub.comentarios %}
+                    <li><strong>{{ comentario.autor }}</strong>: {{ comentario.comentario }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/comentario" method="POST">
+                <input type="hidden" name="publicacion_id" value="{{ pub.id }}">
+                <textarea name="comentario" placeholder="Escribe un comentario..."></textarea>
+                <button type="submit">Comentar</button>
+            </form>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>

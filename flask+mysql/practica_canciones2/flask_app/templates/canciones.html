@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="formulario-usuario">
+            <h1>Nuevo Cancion</h1>
+            <form action="/canciones/agregar" method="POST">
+                <div class="form-group">
+                    <label for="titulo">Titulo: </label>
+                    <input type="text" name="titulo" id="titulo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="artista">Artista:</label>
+                    <input type="text" name="artista" id="artista" class="form-control">
+                </div>
+                <button type="submit" class="btn">Crear</button>
+            </form>
+        </section>
+        <section class="section-usuarios">
+                <h1> Todas las canciones </h1>
+                <div class="lista-usuarios">
+                        {% for cancion in todas_canciones %}
+                        <a href="/canciones/{{cancion.id}}">id: {{ cancion.id}} {{ cancion.titulo }} </a>
+                        {% endfor %}
+                </div>
+                <a href="#"> Agregar Cancion</a>
+        </section>
+    </div>
+</body>
+
+</html>

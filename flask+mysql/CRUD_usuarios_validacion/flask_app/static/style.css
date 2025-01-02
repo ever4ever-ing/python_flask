@@ -1,0 +1,5 @@
+td {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: aqua;
+}

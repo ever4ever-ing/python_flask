@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-info mt-3">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <main>
+
+
+
+        <section>
+            <form action="/nuevo_crear" method="post" style="display: flex; justify-content: space-around; gap:10px">
+                <label for="nombre">Nombre del Curso</label>
+                <input type="text" name="nombre" id="nombre">
+                <input type="submit" value="Crear">
+            </form>
+
+        </section>
+
+        <section>
+            <div style="border: 1px solid black; padding: 10px; margin-bottom: 20px;">
+                <h1>Todos los Cursos</h1>
+                {%for curso in cursos%}
+                <a href="/cursos/{{curso.id}}">{{curso.nombre}}</a> <br>
+                {%endfor%}
+            </div>
+            <a href="/nuevo_estudiante"> Agregar Estudiante</a>
+        </section>
+
+    </main>
+
+</body>
+
+</html>

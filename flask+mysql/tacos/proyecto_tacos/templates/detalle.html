@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Detalle del taquito</title>
+</head>
+<body>
+    <a href="/" class="btn btn-info btn-outline-primary" >Inicio</a>
+    <div class="d-flex justify-content-around flex-wrap p-5">
+
+
+            <div class="card col-3 ">
+                <div class="card-body">
+                    <h2 class="card-title text-primary">Taco {{ taco['id'] }}</h2>
+                    <p class="card-text">Tortilla: {{taco['tortilla']}}</p>
+                    <p class="card-text">Guiso: {{taco['guiso']}}</p>
+                </div>
+                <div class="card-footer">
+                    <h3 class="card-subtitle">Salsa: {{taco['salsa']}}</h3>
+                    <p class="card-subtitle">Fecha de Creación: {{ taco['created_at'].strftime("%B %d, %Y  at %H:%M:%S") }}</p>
+                    <a href="/editar/{{taco['id']}}" class="btn btn-warning" >Editar</a>
+                    <a href="/borrar/{{taco['id']}}" class="btn btn-danger"  >Borrar</a>
+                </div>
+            </div>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body{
+    background-color: gold;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+
+main section{
+    background-color: whitesmoke;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 100%;
+}
+
+
+main section form .cursor-form{
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+main section form .estudiante-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10px;
+    background-color: tomato;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiantes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <table class="table table-bordered mt-3">
+        <thead class="thead-dark">
+            <tr>
+                <th> Nombre  </th>
+                <th> Apellido </th>
+                <th> edad </th>
+            </tr>
+        </thead>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-info mt-3">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <tbody >
+            {% for e in curso.estudiantes %}
+            <tr >
+                <td>{{ e.nombre }}</td> 
+                <td>{{ e.apellido }}</td>
+                <td>{{ e.edad }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

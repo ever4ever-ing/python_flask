@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask AJAX MAP</title>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Prueba de Flask con AJAX</h1>
+
+    <!-- Original: Saludo -->
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" placeholder="Escribe tu nombre">
+    <button id="send-btn">Enviar</button>
+    <p id="response"></p>
+
+    <!-- Buscar ubicación -->
+    <label for="place">Lugar:</label>
+    <input type="text" id="place" placeholder="Escribe un lugar">
+    <button id="location-btn">Buscar ubicación</button>
+    <p id="location-response"></p>
+
+    <h2>Planificar ruta</h2>
+    <input type="text" id="route-place" placeholder="Añadir un lugar">
+    <button id="add-place-btn">Añadir lugar</button>
+    <ul id="places-list"></ul>
+    <button id="generate-route-btn">Generar ruta</button>
+
+
+    <!-- Contenedor del mapa -->
+    <div id="map" style="height: 400px; width: 100%;"></div>
+
+    <script src="/static/script.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver usuario</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <div class="card-header d-flex justify-content-start">
+                <h2>Ver usuario {{usuario.id}}</h2>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Nombre: {{usuario.nombre}}</p>
+                <p class="card-text">Email: {{usuario.email}}</p>
+                <p class="card-text">Fecha creacion: {{usuario.created_at}}</p>
+                <a href="/usuarios/editar/{{usuario.id}}" class="btn btn-link btn-sm">Editar</a>
+                <a href="/usuarios/eliminar/{{usuario.id}}" class="btn btn-link btn-sm">Borrar</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

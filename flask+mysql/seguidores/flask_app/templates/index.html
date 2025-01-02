@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario con Secciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="section">
+            <h1>Seguidores</h1>
+            <table border="1">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Seguidor</th>
+                </tr>
+                {% for follower in followers %}
+                <tr>
+                    <td>{{ follower.nombre_usuario }}</td>
+                    <td>{{ follower.nombre_seguidor }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+
+        <div style="display: flex; flex-direction: row; gap:20px;">
+            
+            <form action="/create_user" method="POST">
+                <h2>Nuevo Usuario</h2>
+                <label>Nombre:</label><input type="text" name="nombre"><br>
+                <label>Apellido:</label><input type="text" name="apellido"><br>
+                <label>Email:</label><input type="email" name="email"><br>
+                <input type="submit" value="Crear">
+            </form>
+
+            
+            <form action="/follow_user" method="POST">
+                <h2>Seguir Usuario</h2>
+                <label>Usuario:</label>
+                <select name="usuario_id">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <label>Seguidor:</label>
+                <select name="seguidor_id">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{ user.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <input type="submit" value="Seguir">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

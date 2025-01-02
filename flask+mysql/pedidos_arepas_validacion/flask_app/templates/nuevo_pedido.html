@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Pedido</title>
+</head>
+
+<body>
+
+    <h1 style="text-align: center;">Nuevo Pedido</h1>
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column; width: 500px; padding: 20px; gap:10px; align-items: center;">
+            <form action="/crear_pedido" method="POST" style="text-align: center; margin-top: 20px;">
+                <div style="display: flex; flex-direction: column;">
+                    <label for="nombre_cliente">Nombre Cliente:</label>
+                    <input type="text" name="nombre_cliente" required>
+                    <label for="cantidad">Cantidad:</label>
+                    <input type="number" name="cantidad" required min="0">
+                    <label for="relleno">Relleno:</label>
+                    <input type="text" name="relleno" required>
+                    <button type="submit">Agregar Pedido</button>
+                </div>
+            </form>
+            <a href="/" style="margin-top: 20px;">Inicio</a>
+        </div>
+</body>
+
+</html>

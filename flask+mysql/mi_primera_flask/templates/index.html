@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascotas</title>
+</head>
+
+<body>
+    <h1>Las mascotas:</h1>
+    {% for una_mascota in todas_mascotas %}
+    <p>
+        <b>Nombre:</b> {{una_mascota.nombre}} <br>
+        <b>Tipo:</b> {{una_mascota.tipo}} <br>
+        <b>Color:</b> {{una_mascota.color}} <br>
+    </p>
+    {% endfor %}
+    <!-- Agregamos al formulario al resto de la plantilla -->
+    <hr>
+    <h2>Agregar una mascota</h2>
+    <form action="/crear_mascota" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre"><br>
+        <label>Tipo:</label>
+        <input type="text" name="tipo"><br>
+        <label>Color:</label>
+        <input type="text" name="color"><br>
+        <input type="submit" value="Agregar Mascota">
+    </form>
+</body>
+
+</html>

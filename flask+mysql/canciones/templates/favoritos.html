@@ -1,0 +1,38 @@
+<!-- /app/templates/favoritos.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canciones Favoritas</title>
+</head>
+<body>
+    <h1>Canciones Favoritas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Artista</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Check if 'favoritos' is not empty or None -->
+            {% if favoritos %}
+                <!-- Loop through each 'cancion' in 'favoritos' -->
+                {% for cancion in favoritos %}
+                <tr>
+                    <td>{{ cancion['id'] }}</td>
+                    <td>{{ cancion['titulo'] }}</td>
+                    <td>{{ cancion['artista'] }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <!-- Display a message if there are no favorite songs -->
+                <tr>
+                    <td colspan="3">No hay canciones favoritas.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</body>
+</html>

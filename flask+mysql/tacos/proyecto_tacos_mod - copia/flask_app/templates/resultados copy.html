@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Tacos!</title>
+</head>
+
+<body>
+    <a href="/" class="btn btn-info btn-outline-primary">Inicio</a>
+    <form method="GET" action="">
+        <!-- Define un formulario que usa el método GET para enviar datos. El atributo action está vacío, lo que significa que enviará los datos a la misma URL de la página actual. -->
+
+        <select name="restaurante" class="form-select"
+            onchange="this.form.action='/tacos/restaurante/' + this.value; this.form.submit()">
+            <!-- Crea un menú desplegable (select) con el nombre "restaurante" y la clase CSS "form-select". 
+                El atributo onchange define una función JavaScript que cambia la acción del formulario a una
+                URL específica basada en el valor seleccionado y luego envía el formulario automáticamente. -->
+
+            <option value="">Todos los Restaurantes</option>
+            {% for restaurante in todos_restaurantes %}
+            <option value="{{ restaurante.id }}" {% if selected_restaurante==restaurante.id %}selected{% endif %}>
+                <!-- Añade una opción al menú desplegable para cada restaurante en la lista. 
+                    El valor de la opción es el ID del restaurante. Si el restaurante actual
+                    es el seleccionado, añade el atributo "selected". -->
+                {{ restaurante.nombre }}
+                <!-- Muestra el nombre del restaurante dentro de la opción del menú desplegable. -->
+            </option>
+            {% endfor %}
+        </select>
+    </form>
+    <div class="d-flex justify-content-around flex-wrap p-5">
+        {% for taco in todos_tacos %}
+        {% if not selected_restaurante or taco['restaurante_id'] == selected_restaurante %}
+        <div class="card col-3 border">
+            <div class="card-body">
+                <h2 class="card-title text-primary">
+                    Taco {{taco['id']}}
+                </h2>
+                <p>
+                    <b>Tortilla:</b> {{taco['tortilla']}}<br>
+                    <b>Guiso:</b> {{taco['guiso']}}<br>
+                    <b>Salsa:</b> {{taco['salsa']}}
+                </p>
+                <a href="/mostrar/{{taco['id']}}">
+                    Ver taco
+                </a>
+            </div>
+            <div class="card-footer">
+                <p class="card-subtitle">Fecha de Creación: {{ taco['created_at'].strftime("%B %d, %Y at %H:%M:%S") }}
+                </p>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</body>
+
+</html>

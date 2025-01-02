@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+</head>
+
+<body>
+
+    <header style="display: flex; align-items: center; flex-direction: column;">
+        <h1>{{ cancion.titulo }} </h1>
+        <h3> {{cancion.artista}}</h3>
+    </header>
+    <div class="container">
+
+
+        <section class="favoritos">
+            <h1>En los favoritos de:</h1>
+            <br>
+            {% for user in todos_usuarios %}
+
+            <a href="/usuarios/{{ user.id }}">- {{ user.nombre }}</a>
+            {% endfor %}
+            <a href="/" style="margin-top: 100px;"> Inicio</a>
+        </section>
+
+        <section class="favoritos">
+            <form action="/add_favorite" method="POST">
+                <div>
+                    <h3 for="user" style="display: inline;">Agregar favorito:</H3>
+                    <div style="margin-top: 30px;">
+                        <label for="user"> Usuario: </label>
+                        <select name="user_id" id="user" style="display: inline;">
+                            {% for user in todos_usuarios %}
+                            <option value="{{ user.id }}">{{ user.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="cancion_id" value="{{ cancion.id }}">
+                </div>
+                <button type="submit" style="margin-top: 20px;">Agregar</button>
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>

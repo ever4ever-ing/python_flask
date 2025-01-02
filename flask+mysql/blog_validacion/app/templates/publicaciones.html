@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Publicaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #000000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #232323;
+        }
+        hr {
+            border: 1px solid #ddd;
+        }
+        div {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h3 {
+            margin-top: 0;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Publicaciones</h2>
+    <form action="/publicar" method="POST">
+        <textarea name="contenido" placeholder="Escribe algo..."></textarea>
+        <button type="submit">Publicar</button>
+    </form>
+    <hr>
+    
+    {% for pub in publicaciones %}
+        <div>
+            <h3>Publicado por: {{ pub.autor }}, hace {{ pub.created_at }}</h3>
+
+            {% if pub.usuario_id == session['usuario_id'] %}
+                <a href="/eliminar/{{ pub.id }}">Eliminar</a>
+            {% endif %}
+            <p>{{ pub.contenido }}</p>
+            <h4>Comentarios:</h4>
+            <ul>
+                {% for comentario in pub.comentarios %}
+                    <li><strong>{{ comentario.autor }}</strong>: {{ comentario.comentario }}</li>
+                {% endfor %}
+            </ul>
+            <form action="/comentario" method="POST">
+                <input type="hidden" name="publicacion_id" value="{{ pub.id }}">
+                <textarea name="comentario" placeholder="Escribe un comentario..."></textarea>
+                <button type="submit">Comentar</button>
+            </form>
+        </div>
+        <hr>
+    {% endfor %}
+</body>
+</html>

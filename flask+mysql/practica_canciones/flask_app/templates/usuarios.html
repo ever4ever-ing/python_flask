@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <section class="formulario-ingresar-datos">
+            <h1>Nuevo Usuario</h1>
+
+            <form action="/crear_usuario" method="POST">
+                <div class="form-group">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" name="nombre" id="nombre" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+
+                <div class="form-group" >
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+
+
+                <button type="submit" class="btn">Crear</button>
+            </form>
+        </section>
+        <section class="section-get-all">
+
+                <h1> Todos los usuarios</h1>
+
+                <div class="lista-usuarios">
+
+                        {% for usuario in todos_usuarios %}
+                        <a href="/usuarios/{{usuario.id}}">{{ usuario.nombre }} </a>
+                        {% endfor %}
+                </div>
+
+                <a href="/canciones"> Agregar Cancion</a>
+
+        </section>
+    </div>
+</body>
+
+</html>
